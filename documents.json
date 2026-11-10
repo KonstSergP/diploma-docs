@@ -1,0 +1,37 @@
+{
+  "common-tz": {
+    "title": "Общее: Техническое задание",
+    "source": "common/tz/main.typ",
+    "output": "build/common-tz.pdf"
+  },
+  "common-pmi": {
+    "title": "Общее: Программа и методика испытаний",
+    "source": "common/pmi/main.typ",
+    "output": "build/common-pmi.pdf"
+  },
+  "individual-tz": {
+    "title": "Индивидуальное: Техническое задание",
+    "source": "individual/tz/main.typ",
+    "output": "build/individual-tz.pdf"
+  },
+  "individual-pmi": {
+    "title": "Индивидуальное: Программа и методика испытаний",
+    "source": "individual/pmi/main.typ",
+    "output": "build/individual-pmi.pdf"
+  },
+  "explanatory-note": {
+    "title": "Индивидуальное: Пояснительная записка",
+    "source": "individual/explanatory-note/main.typ",
+    "output": "build/explanatory-note.pdf"
+  },
+  "program-text": {
+    "title": "Индивидуальное: Текст программы",
+    "source": "individual/program-text/main.typ",
+    "output": "build/program-text.pdf"
+  },
+  "programmer-guide": {
+    "title": "Индивидуальное: Руководство программиста",
+    "source": "individual/programmer-guide/main.typ",
+    "output": "build/programmer-guide.pdf"
+  }
+}
