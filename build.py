@@ -16,10 +16,15 @@ def find_compiler(explicit):
         executable = shutil.which(command)
         if executable:
             return executable
-    if os.name == 'nt':
-        candidates = list((Path.home() / '.vscode' / 'extensions').glob('myriad-dreamin.tinymist-*/out/tinymist.exe'))
-        if candidates:
-            return str(max(candidates, key=lambda path: path.stat().st_mtime))
+    binary = 'tinymist.exe' if os.name == 'nt' else 'tinymist'
+    candidates = [
+        path for path in (Path.home() / '.vscode' / 'extensions').glob(
+            f'myriad-dreamin.tinymist-*/out/{binary}'
+        )
+        if path.is_file() and os.access(path, os.X_OK)
+    ]
+    if candidates:
+        return str(max(candidates, key=lambda path: path.stat().st_mtime))
     raise SystemExit('Compiler not found. Install Typst CLI or pass --compiler /path/to/typst.')
 
 def main():
@@ -34,12 +39,16 @@ def main():
             print(f"{key}: {spec['title']}")
         return
     compiler = find_compiler(args.compiler)
+    compile_args = [compiler, 'compile', '--root', str(ROOT)]
+    fonts = ROOT / 'fonts'
+    if fonts.is_dir():
+        compile_args.extend(['--font-path', str(fonts)])
     selected = documents if args.document == 'all' else {args.document: documents[args.document]}
     for key, spec in selected.items():
         output = ROOT / spec['output']
         output.parent.mkdir(parents=True, exist_ok=True)
         print(f'Building {key}', flush=True)
-        subprocess.run([compiler, 'compile', '--root', str(ROOT), str(ROOT / spec['source']), str(output)], check=True)
+        subprocess.run([*compile_args, str(ROOT / spec['source']), str(output)], check=True)
         print(output, flush=True)
 
 if __name__ == '__main__':

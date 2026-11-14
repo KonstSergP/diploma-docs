@@ -25,13 +25,18 @@ if (-not $executable) {
     }
 }
 if (-not $executable) { throw 'Install Typst CLI or the Tinymist Typst extension for VS Code.' }
+$fontDirectory = Join-Path $PSScriptRoot 'fonts'
+$compileArgs = @('compile', '--root', $PSScriptRoot)
+if (Test-Path -LiteralPath $fontDirectory -PathType Container) {
+    $compileArgs += @('--font-path', $fontDirectory)
+}
 foreach ($entry in $documents.PSObject.Properties) {
     if ($Document -ne 'all' -and $Document -ne $entry.Name) { continue }
     $source = Join-Path $PSScriptRoot $entry.Value.source
     $output = Join-Path $PSScriptRoot $entry.Value.output
     New-Item -ItemType Directory -Path (Split-Path -Parent $output) -Force | Out-Null
     Write-Output ('Building ' + $entry.Name)
-    & $executable compile --root $PSScriptRoot $source $output
+    & $executable @compileArgs $source $output
     if ($LASTEXITCODE -ne 0) { throw "Compilation failed: $LASTEXITCODE" }
     Write-Output $output
 }
