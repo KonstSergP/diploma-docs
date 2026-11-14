@@ -1,4 +1,4 @@
-// Заголовок ненумерованного раздела: аннотация, источники и т. п.
+
 #let unnumbered(title, outlined: true) = heading(level: 1, numbering: none, outlined: outlined, title)
 
 #let contents() = {
@@ -7,7 +7,6 @@
   pad(left: 12.5mm, outline(title: none, indent: 4mm, depth: 3))
 }
 
-// Таблица регистрации — отдельная последняя страница без колонтитулов.
 #let registration-sheet() = {
   set par(first-line-indent: 0pt, justify: false, leading: 8.7pt, spacing: 0pt)
   set text(size: 12pt, weight: "regular")
@@ -29,8 +28,6 @@
   )
 }
 
-// Заготовка приложения: на новой странице, обозначение справа,
-// тематический заголовок по центру. Нумерация рисунков/таблиц пока общая.
 #let appendix(title, number: 1) = {
   pagebreak(weak: true)
   show heading: it => block(width: 100%, below: 10pt, sticky: true)[

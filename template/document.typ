@@ -4,8 +4,7 @@
 
 #let pdf-metadata = document
 
-// Общий профиль ЕСПД, визуально согласованный с образцом «Общее ТЗ».
-// Не является шаблоном основного текста ВКР по ГОСТ НИР.
+
 #let document(meta: (:), approval: true, registration: true, body) = {
   set pdf-metadata(title: meta.title + " — " + meta.kind, author: meta.authors.map(a => a.name))
   set page(width: paper-width, height: paper-height, margin: 0pt)
