@@ -1,13 +1,11 @@
 #import "../../shared/titles.typ": individual-title
-#import "../../shared/project.typ": project, designation
-#import "../../shared/people.typ": author
+#import "../../shared/project.typ": project
+#import "../../shared/people.typ": petrov
 
-// Вид документа и суффикс обозначения взяты из прошлогоднего комплекта.
-// При необходимости переопределите title и другие поля project здесь.
 #let meta = (
   ..project,
   title: individual-title,
   kind: "Пояснительная записка",
-  code: designation + " 81 01-1",
-  authors: (author,),
+  code: project.designation + " 81 01-1",
+  authors: (petrov,),
 )
