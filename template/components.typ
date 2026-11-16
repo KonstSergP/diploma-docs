@@ -2,29 +2,27 @@
 #let unnumbered(title, outlined: true) = heading(level: 1, numbering: none, outlined: outlined, title)
 
 #let contents() = {
-  heading(level: 1, numbering: none, outlined: false)[СОДЕРЖАНИЕ]
+  unnumbered(outlined: false)[СОДЕРЖАНИЕ]
   set outline.entry(fill: repeat(text(weight: "regular", [.])) )
   pad(left: 12.5mm, outline(title: none, indent: 4mm, depth: 3))
 }
 
 #let registration-sheet() = {
-  set par(first-line-indent: 0pt, justify: false, leading: 8.7pt, spacing: 0pt)
-  set text(size: 12pt, weight: "regular")
+  heading(level: 1, numbering: none)[Лист регистрации изменений]
+  set text(size: 10pt, hyphenate: false)
   let cell = table.cell
   table(
-    columns: (36pt, 30pt, 36pt, 36pt, 66pt, 54pt, 69pt, 117pt, 43pt, 36pt),
-    rows: (29pt, 27pt, 83pt) + (27.2pt,) * 17,
-    stroke: 0.48pt, inset: 3pt, align: center + horizon,
-    cell(colspan: 10)[*ЛИСТ РЕГИСТРАЦИИ ИЗМЕНЕНИЙ*],
-    cell(colspan: 5)[Номера листов (страниц)],
-    cell(rowspan: 2)[Всего листов (страниц) в докум.],
+    columns: (10mm, 18mm, 18mm, 16mm, 23mm, 20mm, 20mm, 29mm, 13mm, 13mm),
+    rows: (12mm, 28mm) + (9mm,) * 20,
+    stroke: 0.5pt, inset: 1mm, align: center + horizon,
+    cell(rowspan: 2)[Изм.], cell(colspan: 4)[Номера листов (страниц)],
+    cell(rowspan: 2)[Всего листов (страниц) в документе],
     cell(rowspan: 2)[№ документа],
-    cell(rowspan: 2)[Входящий № сопроводительного докум. и дата],
-    cell(rowspan: 2, align: top + center)[Подп.],
-    cell(rowspan: 2, align: top + center)[Дата],
-    ..("Изм.", "Изменённых", "Заменённых", "Новых", "Аннулированных").map(label =>
-      rotate(-90deg, reflow: true, text(size: 10pt, label))),
-    ..range(170).map(_ => []),
+    cell(rowspan: 2)[Входящий № сопроводительного документа и дата],
+    cell(rowspan: 2)[Подп.], cell(rowspan: 2)[Дата],
+    ..("Изменённых", "Заменённых", "Новых", "Аннулированных").map(x =>
+      rotate(-90deg, reflow: true, box(x))),
+    ..range(200).map(_ => []),
   )
 }
 
