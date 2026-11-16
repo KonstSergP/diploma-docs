@@ -8,7 +8,7 @@
     else { person.name })
 }
 
-#let signature(name) = [#box(width: 27mm, line(length: 27mm, stroke: 0.4pt)) #name]
+#let signature(name) = [#box(width: 27mm, line(length: 27mm, stroke: 0.4pt)) \/ #name \/]
 #let date-line(year) = [«\_\_\_» \_\_\_\_\_\_\_\_\_\_\_\_ #year г.]
 
 #let cover(meta, approval: false, approved: true) = {
@@ -29,19 +29,19 @@
     at(25mm, 143mm, 175mm, align(center)[
       #strong(upper(meta.title))
       #v(8mm)
-      #meta.kind
+      *#meta.kind*
       #v(6mm)
       *ЛИСТ УТВЕРЖДЕНИЯ*
       #v(4mm)
-      #code
+      *#code*
     ])
     if meta.authors.len() == 1 {
       at(120mm, 214mm, 78mm, align(center)[
         Исполнитель\
         #meta.authors.first().role
-        #v(4mm)
+        #v(2mm)
         #signature(meta.at("signature-name", default: signer-name(meta.authors.first())))
-        #v(4mm)
+        #v(2mm)
         #date-line(meta.year)
       ])
     } else {
@@ -51,9 +51,9 @@
         #grid(columns: (1fr,) * meta.authors.len(), gutter: 4mm,
           ..meta.authors.map(person => align(center)[
             #person.role
-            #v(4mm)
+            #v(2mm)
             #signature(signer-name(person))
-            #v(4mm)
+            #v(2mm)
             #date-line(meta.year)
           ]))
       ])
@@ -63,14 +63,14 @@
     at(25mm, 81mm, 175mm, align(center)[
       #strong(upper(meta.title))
       #v(9mm)
-      #meta.kind
+      *#meta.kind*
       #v(6mm)
-      #meta.code
+      *#meta.code*
       #v(6mm)
-      #context [Листов #counter(page).final().first()]
+      *#context [Листов #counter(page).final().first()]*
     ])
   }
-  at(20mm, 276mm, body-width, align(center)[#meta.city #meta.year])
+  at(20mm, 276mm, body-width, align(center)[*#meta.city #meta.year*])
 }
 
 #let approval-sheet(meta) = cover(meta, approval: true)

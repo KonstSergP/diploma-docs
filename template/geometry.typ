@@ -37,8 +37,8 @@
 #let furniture(code, stamp: true) = {
   set text(size: 12pt, weight: "regular")
   set par(first-line-indent: 0pt, justify: false, leading: 1.8pt, spacing: 0pt)
-  context at(20mm, 8mm, body-width, align(center, counter(page).display("1")))
-  at(20mm, 13mm, body-width, align(center, code))
+  strong(context at(20mm, 8mm, body-width, align(center, counter(page).display("1"))))
+  at(20mm, 13mm, body-width, align(center, strong(code)))
   if stamp {
     at(20mm, 272mm, body-width, {
       set text(size: 9pt)
