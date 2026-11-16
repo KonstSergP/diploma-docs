@@ -8,7 +8,7 @@
     else { person.name })
 }
 
-#let signature(name) = [#box(width: 27mm, line(length: 27mm, stroke: 0.4pt)) \/ #name \/]
+#let signature(name, slashes: true, line-width: 27mm) = [#box(width: line-width, line(length: line-width, stroke: 0.4pt)) #if slashes { [\/ #name \/] } else { name }]
 #let date-line(year) = [«\_\_\_» \_\_\_\_\_\_\_\_\_\_\_\_ #year г.]
 
 #let cover(meta, approval: false, approved: true) = {
@@ -22,8 +22,8 @@
       #meta.program])
     at(25mm, 72mm, 83mm, align(center)[СОГЛАСОВАНО\ #meta.supervisor.role])
     at(115mm, 72mm, 83mm, align(center)[УТВЕРЖДАЮ\ #meta.approver.role])
-    at(25mm, 110mm, 83mm, align(center, signature(meta.supervisor.name)))
-    at(115mm, 110mm, 83mm, align(center, signature(meta.approver.name)))
+    at(25mm, 110mm, 83mm, align(center, signature(meta.supervisor.name, slashes: false)))
+    at(115mm, 110mm, 83mm, align(center, signature(meta.approver.name, slashes: false)))
     at(25mm, 120mm, 83mm, align(center, date-line(meta.year)))
     at(115mm, 120mm, 83mm, align(center, date-line(meta.year)))
     at(25mm, 143mm, 175mm, align(center)[
@@ -40,7 +40,7 @@
         Исполнитель\
         #meta.authors.first().role
         #v(2mm)
-        #signature(meta.at("signature-name", default: signer-name(meta.authors.first())))
+        #signature(meta.at("signature-name", default: signer-name(meta.authors.first())), line-width: 20mm)
         #v(2mm)
         #date-line(meta.year)
       ])
@@ -52,7 +52,7 @@
           ..meta.authors.map(person => align(center)[
             #person.role
             #v(2mm)
-            #signature(signer-name(person))
+            #signature(signer-name(person), line-width: 20mm)
             #v(2mm)
             #date-line(meta.year)
           ]))

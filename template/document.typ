@@ -16,12 +16,13 @@
     lang: "ru",
     top-edge: 0.784em,
     bottom-edge: -0.216em,
-    hyphenate: true
+    hyphenate: false,
+    kerning: false
   )
   set par(
     justify: true,
     leading: 8.7pt,
-    spacing: 6pt,
+    spacing: 12pt,
     first-line-indent: (amount: 12.5mm, all: true)
   )
   set block(above: 0pt, below: 0pt)
@@ -79,11 +80,11 @@
 
   set list(marker: [-], indent: 12.5mm, body-indent: 0.5em, spacing: 6pt)
   set enum(numbering: "1)", indent: 12.5mm, body-indent: 0.5em, spacing: 6pt)
-  show list: it => block(above: 6pt, below: 6pt)[
+  show list: it => block(above: 14.7pt, below: 14.7pt)[
     #set par(leading: 3.87pt)
     #it
   ]
-  show enum: it => block(above: 6pt, below: 6pt)[
+  show enum: it => block(above: 14.7pt, below: 14.7pt)[
     #set par(leading: 3.87pt)
     #it
   ]
