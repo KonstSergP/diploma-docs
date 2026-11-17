@@ -95,13 +95,13 @@
     it
   }
   set figure(gap: 6pt)
-  show figure: it => block(
-    width: 100%, 
-    above: 8pt, 
+  show figure: set block(
+    width: 100%,
+    above: 8pt,
     below: 8pt,
-    breakable: if it.kind == table { tables-breakable } else { false },
-    it
+    breakable: false,
   )
+  show figure.where(kind: table): set block(breakable: tables-breakable)
   show figure.caption: set par(first-line-indent: 0pt, justify: false, leading: 1.8pt)
   show figure.where(kind: table): set figure.caption(position: top)
   show figure.where(kind: table): set align(left)
