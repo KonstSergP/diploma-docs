@@ -54,8 +54,6 @@
     if it.level == 1 { pagebreak(weak: true) }
     block(
       width: 100%,
-      above: if it.level == 1 { 0pt } else { 6pt },
-      below: if it.level == 1 { 10pt } else { 6pt },
       sticky: true
     )[
       #let title = [
