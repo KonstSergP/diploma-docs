@@ -1,6 +1,6 @@
 #import "../../../template/components.typ": unnumbered
+#import "../sources.typ": bibliography
 
-#unnumbered("СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ")
+#unnumbered("Список использованных источников")
 
-// TODO: добавить источники и оформить ссылки. Библиография из образца не копировалась.
-Список источников.
+#bibliography()
